@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import sys
 import requests
 import pprint
 import json
@@ -72,8 +73,8 @@ def stop():
 
     return 'Testing'
 
-@wb.route("/stop/<id>")
-@wb.route("/stop/<agency>/<id>")
+@wb.route("/stops/<id>")
+@wb.route("/stops/<agency>/<id>")
 def stops(id = None, agency = None):
 
     if id and agency:
@@ -96,6 +97,7 @@ def stops(id = None, agency = None):
 
 
 if __name__ == "__main__":
-    wb.debug = True
+    if sys.argv[1] == '--debug':
+        wb.debug = True
     port = int(os.environ.get('PORT', 5000))
     wb.run(host='0.0.0.0', port=port)
