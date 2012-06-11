@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 import requests
 import pprint
 import json
+import os
 
 wb = Flask(__name__)
 
@@ -96,4 +97,5 @@ def stops(id = None, agency = None):
 
 if __name__ == "__main__":
     wb.debug = True
-    wb.run()
+    port = int(os.environ.get('PORT', 5000))
+    wb.run(host='0.0.0.0', port=port)
