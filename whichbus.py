@@ -97,7 +97,7 @@ def stops(id = None, agency = None):
 
 
 if __name__ == "__main__":
-    if sys.argv[1] == '--debug':
+    if '--debug' in sys.argv:
         wb.debug = True
     port = int(os.environ.get('PORT', 5000))
     wb.run(host='0.0.0.0', port=port)
